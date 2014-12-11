@@ -8,14 +8,42 @@ output:
 
 ## Loading and preprocessing the data
 
-
+```{r}
+data<-read.csv("activity.csv")
+```
 
 ## What is mean total number of steps taken per day?
 
+How many steps were taken per day?
+```{r fig.width=7, fig.height=6}
+x<-tapply(data$steps,data$date,sum)
+hist(x,xlab="Number of steps/day",main="Histogram of steps/day",las=1)
+```
+With mean and median steps per day:
+```{r mean and median}
+mean(x,na.rm=T)
+median(x,na.rm=T)
+
+```
 
 
 ## What is the average daily activity pattern?
 
+What interval has the highest average number of steps?
+
+```{r fig.width=7, fig.height=6}
+x<-tapply(data$steps,data$interval,mean,na.rm=T)
+plot(x,xlab="Time interval",ylab="Mean number of steps",type="l",las=1)
+```
+
+```{r interval}
+int<-c(1:length(x))[x==max(x)]
+```
+```{r time}
+time<-as.numeric(names(x[x==max(x)]))
+```
+
+The maximum steps occurred during interval `r int` at time `r time`.
 
 
 ## Imputing missing values
