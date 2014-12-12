@@ -132,7 +132,7 @@ library(lattice)
 
 ```r
 x<-aggregate(data$steps,list(interval=data$interval,weekday=data$weekday),mean)
-xyplot(x~interval|weekday,data=x,type="l", ylab="Average number of steps")
+xyplot(x~interval|weekday,data=x,type="l", ylab="Average number of steps",layout=c(1,2))
 ```
 
 ![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7.png) 
