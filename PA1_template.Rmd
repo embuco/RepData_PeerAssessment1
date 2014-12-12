@@ -33,7 +33,7 @@ What interval has the highest average number of steps?
 
 ```{r fig.width=7, fig.height=6}
 x<-tapply(data$steps,data$interval,mean,na.rm=T)
-plot(x,xlab="Time interval",ylab="Mean number of steps",type="l",las=1)
+plot(x,xlab="Interval",ylab="Mean number of steps",type="l",las=1)
 ```
 
 ```{r interval}
@@ -49,5 +49,45 @@ The maximum steps occurred during interval `r int` at time `r time`.
 ## Imputing missing values
 
 
+```{r missed, results="hide"}
+missed<-sum(is.na(data$steps))
+```
+The number of missing values is `r missed`.
+
+There are eight missing days.  To impute the values for the intervals on these days, I will use the mean number of steps for each interval on the days when steps were recorded:
+
+```{r}
+for (i in unique(data$interval)) {
+  data$steps[is.na(data$steps) & data$interval==i]<-mean(data$steps[data$interval==i],na.rm=T)
+}
+```
+Histogram with imputed values, and new mean and median steps/day:
+```{r fig.width=7, fig.height=6}
+x<-tapply(data$steps,data$date,sum)
+hist(x,xlab="Number of steps/day",main="Histogram of steps/day with imputed missing values",las=1)
+```
+With mean and median steps per day, imputed values included:
+```{r imean and imedian}
+mean(x,na.rm=T)
+median(x,na.rm=T)
+
+```
+The mean number of steps/day has not changed, unsurprisingly since we replaced each missing interval with the mean value for the interval.  The median has increased slightly, again not surprisingly, as we essentially replaced the number of steps on the missing days with the daily mean, which is slightly larger than the median.   
 
 ## Are there differences in activity patterns between weekdays and weekends?
+
+Create a factor indicating weekday or weekend:
+
+```{r}
+data$weekday<-"weekday"
+data$weekday[weekdays(as.Date(data$date)) %in% c("Saturday","Sunday")]<-"weekend"
+```
+
+Create a plot of average steps per interval for weekdays v. weekends.
+```{r}
+library(lattice)
+x<-aggregate(data$steps,list(interval=data$interval,weekday=data$weekday),mean)
+xyplot(x~interval|weekday,data=x,type="l", ylab="Average number of steps")
+```
+
+There do appear to be some differences between weekdays and weekends. The mysterfy individual looks to exercise weekday mornings and then is reasonably sedentary.  On the weekends, s/he is moderately active throughout the day and stays active later into the evening.
