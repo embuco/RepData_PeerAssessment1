@@ -90,4 +90,4 @@ x<-aggregate(data$steps,list(interval=data$interval,weekday=data$weekday),mean)
 xyplot(x~interval|weekday,data=x,type="l", ylab="Average number of steps",layout=c(1,2))
 ```
 
-There do appear to be some differences between weekdays and weekends. The mysterfy individual looks to exercise weekday mornings and then is reasonably sedentary.  On the weekends, s/he is moderately active throughout the day and stays active later into the evening.
+There do appear to be some differences between weekdays and weekends. The mystery individual looks to exercise weekday mornings and then is reasonably sedentary.  On the weekends, s/he is moderately active throughout the day and stays active later into the evening.

@@ -137,4 +137,4 @@ xyplot(x~interval|weekday,data=x,type="l", ylab="Average number of steps",layout
 
 ![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7.png) 
 
-There do appear to be some differences between weekdays and weekends. The mysterfy individual looks to exercise weekday mornings and then is reasonably sedentary.  On the weekends, s/he is moderately active throughout the day and stays active later into the evening.
+There do appear to be some differences between weekdays and weekends. The mystery individual looks to exercise weekday mornings and then is reasonably sedentary.  On the weekends, s/he is moderately active throughout the day and stays active later into the evening.
