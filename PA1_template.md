@@ -23,6 +23,7 @@ hist(x,xlab="Number of steps/day",main="Histogram of steps/day",las=1)
 ```
 
 ![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2.png) 
+
 With mean and median steps per day:
 
 ```r
@@ -91,6 +92,7 @@ hist(x,xlab="Number of steps/day",main="Histogram of steps/day with imputed miss
 ```
 
 ![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5.png) 
+
 With mean and median steps per day, imputed values included:
 
 ```r

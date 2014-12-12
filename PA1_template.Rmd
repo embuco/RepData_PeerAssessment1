@@ -19,6 +19,7 @@ How many steps were taken per day?
 x<-tapply(data$steps,data$date,sum)
 hist(x,xlab="Number of steps/day",main="Histogram of steps/day",las=1)
 ```
+
 With mean and median steps per day:
 ```{r mean and median}
 mean(x,na.rm=T)
@@ -66,6 +67,7 @@ Histogram with imputed values, and new mean and median steps/day:
 x<-tapply(data$steps,data$date,sum)
 hist(x,xlab="Number of steps/day",main="Histogram of steps/day with imputed missing values",las=1)
 ```
+
 With mean and median steps per day, imputed values included:
 ```{r imean and imedian}
 mean(x,na.rm=T)
